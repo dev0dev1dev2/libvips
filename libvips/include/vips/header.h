@@ -173,6 +173,7 @@ extern "C" {
 
 VIPS_API
 guint64 vips_format_sizeof(VipsBandFormat format);
+#pragma acc routine seq
 VIPS_API
 guint64 vips_format_sizeof_unsafe(VipsBandFormat format);
 

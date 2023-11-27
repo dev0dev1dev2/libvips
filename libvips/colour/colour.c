@@ -246,9 +246,10 @@ vips_colour_gen(VipsRegion *out_region,
 
 	VIPS_GATE_START("vips_colour_gen: work");
 
-#pragma acc kernels
+#pragma acc data copy(ir), create(p)
 	for (y = 0; y < r->height; y++) {
 
+#pragma acc routine(vips_format_sizeof_unsafe) seq
 		for (i = 0; ir[i]; i++)
 			p[i] = VIPS_REGION_ADDR(ir[i], r->left, r->top + y);
 		p[i] = NULL;
